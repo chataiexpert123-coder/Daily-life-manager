@@ -22,12 +22,15 @@ jobs:
           unzip -q ./*.zip -d extracted
           rsync -a extracted/ ./
           cp patches/src/services/sheetsSync.ts src/services/sheetsSync.ts
+          cp patches/src/components/Settings/GoogleSheetsSettings.tsx src/components/Settings/GoogleSheetsSettings.tsx
+          cp patches/src/index.css src/index.css
           cp patches/capacitor.config.ts capacitor.config.ts
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Setup Java
         uses: actions/setup-java@v4
