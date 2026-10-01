@@ -10,10 +10,8 @@ on:
 jobs:
   build-apk:
     runs-on: ubuntu-latest
-
     permissions:
       contents: read
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,6 +21,8 @@ jobs:
           mkdir extracted
           unzip -q ./*.zip -d extracted
           rsync -a extracted/ ./
+          cp patches/src/services/sheetsSync.ts src/services/sheetsSync.ts
+          cp patches/capacitor.config.ts capacitor.config.ts
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
